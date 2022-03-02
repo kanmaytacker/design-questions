@@ -2,15 +2,12 @@ package com.scaler.lld.tictactoe;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import java.util.List;
 
-import com.scaler.lld.tictactoe.models.Board;
+import com.scaler.lld.tictactoe.factories.PlayerFactory;
 import com.scaler.lld.tictactoe.models.BoardCell;
-import com.scaler.lld.tictactoe.models.Bot;
 import com.scaler.lld.tictactoe.models.Game;
 import com.scaler.lld.tictactoe.models.GameSymbol;
-import com.scaler.lld.tictactoe.models.HumanPlayer;
 import com.scaler.lld.tictactoe.models.User;
 import com.scaler.lld.tictactoe.strategies.DefaultPlayingStrategy;
 
@@ -28,22 +25,18 @@ public class TicTacToeTest {
 
     private Game createGame() {
 
-        HumanPlayer human = HumanPlayer
-                .builder()
-                .symbol(GameSymbol.O)
-                .user(new User())
-                .build();
-
-        Bot bot = Bot
-                .builder()
-                .symbol(GameSymbol.O)
-                .playingStrategy(new DefaultPlayingStrategy())
-                .build();
-
         Game game = Game.getBuilder()
                 .withDimension(3, 3)
-                .withPlayer(human)
-                .withPlayer(bot)
+                .withPlayer(
+                        PlayerFactory.getHumanPlayer()
+                                .user(new User())
+                                .symbol(GameSymbol.X)
+                                .build())
+                .withPlayer(
+                        PlayerFactory.getBotPlayer()
+                                .playingStrategy(new DefaultPlayingStrategy())
+                                .symbol(GameSymbol.O)
+                                .build())
                 .build();
 
         return game;
