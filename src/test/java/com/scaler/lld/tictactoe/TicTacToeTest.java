@@ -2,10 +2,8 @@ package com.scaler.lld.tictactoe;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import java.util.List;
 
-import com.scaler.lld.tictactoe.models.Board;
 import com.scaler.lld.tictactoe.models.BoardCell;
 import com.scaler.lld.tictactoe.models.Bot;
 import com.scaler.lld.tictactoe.models.Game;
