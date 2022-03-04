@@ -8,15 +8,15 @@ import com.scaler.lld.snakesladders.models.Dice;
 import com.scaler.lld.snakesladders.models.Game;
 import com.scaler.lld.snakesladders.models.GameRequest;
 import com.scaler.lld.snakesladders.models.Player;
+import com.scaler.lld.snakesladders.repositories.GameRepository;
 
 public class GameService {
-
-    List<Game> games = new ArrayList<>();
+    
+    GameRepository gameRepository = new GameRepository();
 
     public Game createGame(GameRequest gameRequest) {
         Game game = initialiseGame(gameRequest);
-        Game persistedGame = persistGame(game);
-        return persistedGame;
+        return gameRepository.save(game);
     }
     
     private Game initialiseGame(GameRequest gameRequest) {
@@ -29,11 +29,6 @@ public class GameService {
                 .players(players)
                 .dices(dices)
                 .build();
-    }
-
-    private Game persistGame(Game game) {
-        games.add(game);
-        return game;
     }
 
 }
