@@ -12,6 +12,7 @@ import lombok.Setter;
 @Builder(toBuilder = true)
 public class Game {
 
+    private Integer id;
     private Board board;
 
     @Builder.Default
@@ -20,4 +21,13 @@ public class Game {
     @Builder.Default
     private List<Dice> dices = new ArrayList<>();
 
+    public int rollDice() {
+        
+        int rollValue = 0;
+        for (Dice dice : this.dices) {
+            rollValue += dice.roll();
+        }
+        
+        return rollValue;
+    }
 }

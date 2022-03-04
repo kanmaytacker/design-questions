@@ -45,4 +45,16 @@ public class Board {
         return BaseCell.builder().type(CellType.BASE).index(index).build();
     }
 
+    public Cell getCurrentCell(Player player) {
+        for (Cell cell : cells) {
+            if (cell.getPieces().contains(player.getPieces().get(0))) {
+                return cell;
+            }
+        }
+        throw new RuntimeException("Player not found");
+    }
+
+    public Cell getNextCell(Cell currentCell, int rollValue) {
+        return null;
+    }
 }

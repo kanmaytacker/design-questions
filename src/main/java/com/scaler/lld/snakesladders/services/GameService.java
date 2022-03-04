@@ -36,4 +36,13 @@ public class GameService {
         return game;
     }
 
+    public Game getGame(Integer gameId) {
+        for (Game game : games) {
+            if (game.getId().equals(gameId)) {
+                return game;
+            }
+        }
+        throw new RuntimeException("Game not found");
+    }
+
 }
