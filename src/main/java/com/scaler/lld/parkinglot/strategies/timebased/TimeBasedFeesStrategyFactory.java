@@ -2,11 +2,12 @@ package com.scaler.lld.parkinglot.strategies.timebased;
 
 import com.scaler.lld.parkinglot.models.Vehicle;
 import com.scaler.lld.parkinglot.models.VehicleType;
+import com.scaler.lld.parkinglot.strategies.FeesCalculationFactory;
 import com.scaler.lld.parkinglot.strategies.FeesStrategy;
 
-public class TimeBasedFeesStrategyFactory {
+public class TimeBasedFeesStrategyFactory implements FeesCalculationFactory {
 
-    public static FeesStrategy getStrategy(VehicleType vehicleType) {
+    public FeesStrategy getStrategy(VehicleType vehicleType) {
         
         switch (vehicleType) {
             case LARGE:
