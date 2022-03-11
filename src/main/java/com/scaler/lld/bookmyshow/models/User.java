@@ -11,9 +11,11 @@ import com.scaler.lld.bookmyshow.services.password.PasswordEncoder;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "USERS")
@@ -21,6 +23,10 @@ public class User extends Auditable {
     
     private String username;
     private String hashedSaltedPassword;
+
+    public User(String username) {
+        this.username = username;
+    }
 
     @ManyToMany
     private Set<Role> roles = new HashSet<>();
@@ -41,6 +47,10 @@ public class User extends Auditable {
         // password-encoder is a dependency that we need
         String encoded = passwordEncoder.encode(password + salt) + salt;
         return encoded.equals(this.getHashedSaltedPassword());
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 
 }

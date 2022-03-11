@@ -27,4 +27,9 @@ public class Booking extends Auditable {
     @OneToMany(mappedBy = "booking")
     List<ShowSeat> seatsBooked = new ArrayList<>();
 
+    public Booking(Customer customer, Show show) {
+        this.customer = customer;
+        this.show = show;
+        this.status = BookingStatus.PAYMENT_PENDING;
+    }
 }
