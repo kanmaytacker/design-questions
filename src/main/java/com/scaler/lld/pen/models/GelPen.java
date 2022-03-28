@@ -1,9 +1,11 @@
 package com.scaler.lld.pen.models;
 
+import com.scaler.lld.pen.strategies.RefillableStrategy;
+
 public class GelPen extends Pen {
 
-    public GelPen(PenBody body, PenNib nib, PenInk ink) {
-        super(body, nib, ink);
+    public GelPen(PenBody body, PenNib nib, PenInk ink, RefillableStrategy strategy) {
+        super(body, nib, ink, strategy);
     }
 
     @Override
@@ -12,10 +14,4 @@ public class GelPen extends Pen {
 
     }
 
-    @Override
-    public void refill() {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }
