@@ -1,5 +1,6 @@
 # Design problems and solutions
 This repository contains a set of design problems and solutions for the following topics:
+- [Pen](#Pen)
 - [TicTacToe](#TicTacToe)
 - [Snakes & Ladders](#creational-design-patterns)
 - [Parking Lot Management](#structural-design-patterns)
