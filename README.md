@@ -7,6 +7,13 @@ This repository contains a set of design problems and solutions for the followin
 - [BookMyShow](#behavioural-design-patterns)
 - [Email Campaign Management](#structural-design-patterns)
 
+## Pen
+### Further Reading
+- [OOP using a pen](https://dzone.com/articles/object-oriented-programming-1)
+- [OOP in Python](https://freecontent.manning.com/object-oriented-coding-in-python/)
+- [OOP in Python - II](https://gist.github.com/kanmaytacker/e6ed49131970c67588fba9164fbc45d4)
+- [Deep look at delegation and OOP](https://web.media.mit.edu/~lieber/Lieberary/OOP/Delegation/Delegation.html)
+
 ## TicTacToe
 [Play the game here!](https://playtictactoe.org/)
 
