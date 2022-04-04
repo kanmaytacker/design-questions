@@ -1,6 +1,5 @@
 package com.scaler.lld.parkinglot.services;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 import com.scaler.lld.parkinglot.models.ParkingSpot;
