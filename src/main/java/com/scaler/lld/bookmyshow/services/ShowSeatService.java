@@ -8,7 +8,7 @@ public class ShowSeatService {
         return false;
     }
 
-    public void book(ShowSeat showSeat) {
+    public void save(ShowSeat showSeat) {
     }
 
 }

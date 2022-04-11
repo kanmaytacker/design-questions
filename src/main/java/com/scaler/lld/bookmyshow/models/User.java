@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 import com.scaler.lld.bookmyshow.services.password.PasswordEncoder;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
