@@ -8,7 +8,7 @@ import com.scaler.lld.parkinglot.models.SpotStatus;
 import com.scaler.lld.parkinglot.models.VehicleType;
 
 public class ParkingSpotRepository {
-    
+
     List<ParkingSpot> parkingSpots = new ArrayList<>();
 
     public ParkingSpot save(ParkingSpot parkingSpot) {
@@ -17,11 +17,21 @@ public class ParkingSpotRepository {
     }
 
     public ParkingSpot findOneByVehicleTypeAndStatusAvailable(VehicleType type) {
-        
-        for (ParkingSpot parkingSpot: parkingSpots) {
-            
-            if (parkingSpot.getSpotStatus() == SpotStatus.AVAILABLE && parkingSpot.getVehicleType() == type){
+
+        for (ParkingSpot parkingSpot : parkingSpots) {
+
+            if (parkingSpot.getSpotStatus() == SpotStatus.AVAILABLE && parkingSpot.getVehicleType() == type) {
                 return parkingSpot;
+            }
+        }
+
+        return null;
+    }
+
+    public ParkingSpot findById(Integer spotId) {
+        for (ParkingSpot spot : this.parkingSpots) {
+            if (spot.getSpotId() == spotId) {
+                return spot;
             }
         }
 

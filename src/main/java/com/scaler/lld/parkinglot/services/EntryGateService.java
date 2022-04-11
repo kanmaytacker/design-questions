@@ -22,7 +22,7 @@ public class EntryGateService {
 
         // Update parking spot
         parkingSpot.setSpotStatus(SpotStatus.FILLED);
-        parkingSpotService.markSlotBooked(parkingSpot);
+        parkingSpotService.save(parkingSpot);
 
         // Create and persist ticket
         Ticket ticket = ticketService.createTicket(vehicleType, parkingSpot);

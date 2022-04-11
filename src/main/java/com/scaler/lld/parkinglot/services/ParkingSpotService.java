@@ -7,8 +7,12 @@ public class ParkingSpotService {
 
     private ParkingSpotRepository parkingSpotRepository = new ParkingSpotRepository();
 
-    public void markSlotBooked(ParkingSpot spot) {
+    public void save(ParkingSpot spot) {
         parkingSpotRepository.save(spot);
+    }
+
+    public ParkingSpot getParkingSpot(Integer spotId) {
+        return parkingSpotRepository.findById(spotId);
     }
 
 }
