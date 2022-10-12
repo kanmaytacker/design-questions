@@ -387,4 +387,6 @@ classDiagram
     WinningStrategy <|-- NInADiagonalWinningStrategy
 ```
 
+### Side assignment
+* A common requirement in games is to undo the last move. How would you design your system to support this requirement?
 
