@@ -138,19 +138,114 @@ classDiagram
 - common behaviour - `play()`
 - common attr - `symbol()`
 
-```mermaid
-```
-
 ## Tight coupling
 -HumanPlayer
 -BotPlayer 
 -Player[] players
-``mermaid
-``
+
 
 ## OCP and SRP violation in play method - Strategy
 
 ## Huge memory consumption - Flyweight
 
 
+# Version 2 with design patterns
 
+```mermaid
+classDiagram
+
+    class ImageRegistry {
+      -Map<int, Byte[]> imageMap
+      +addImage(int, Byte[])
+      +getImage(int) Byte[]
+    }
+
+    class Player {
+      <<abstract>>
+      -Int id
+      -Symbol symbol
+      -Byte[] image
+      +play()
+    }
+
+    class HumanPlayer {
+      -String name
+      -String email
+    }
+
+    class BotPlayer {
+      -Int level
+      -PlayStrategy strategy
+    }
+
+    Player <| -- HumanPlayer
+    Player <|-- BotPlayer
+
+    class PlayStrategy {
+      <<interface>>
+      +bot_play()
+    }
+
+    class EasyStrategy {
+      +bot_play()
+    }
+
+    class MediumStrategy {
+      +bot_play()
+    }
+
+    class HardStrategy {
+      +bot_play()
+    }
+
+  PlayStrategy <|-- EasyStrategy
+  PlayStrategy <|-- MediumStrategy
+  PlayStrategy <|-- HardStrategy
+
+  BotPlayer "1" --o "1" PlayStrategy
+
+    class Game {
+        -Board board
+        -List<Player> playerList
+        -WinStrategy winStrategy
+        +register(HumanPlayer) HumanPlayer
+        +startGame(playerList, int row, int column) Board
+        +makeMove(PlayerId, int, int) Board
+        +checkWinner(Board, playerList) int
+        +undo()
+    }
+
+    class WinStrategy {
+      <<interface>>
+      +checkWinner(Board, playerList) int
+    }
+
+    class WinStrategySimple {
+      +checkWinner(Board, playerList) int
+    }
+
+    class WinStrategyComplex {
+      +checkWinner(Board, playerList) int
+    }
+
+    WinStrategy <|-- WinStrategySimple
+    WinStrategy <|-- WinStrategyComplex
+
+    class Board {
+        -Cell[][] cells
+        +Board(int, int) : Board
+    }
+
+    class Cell {
+        -int x
+        -int y
+        -Symbol symbol
+    }
+
+    Game "1" --* "1" Board
+    Game "1" --o "1" WinStrategy
+    Game "1" --* "*" Player
+
+    Board "1" --* "*" Cell
+    
+```
