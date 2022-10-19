@@ -135,11 +135,46 @@ classDiagram
 * Huge memory consumption - multiple instances of the player will be created for multiple games. Each instance has a new photo.
 
 ## Common contract - Player abstract class
-- common behaviour - `play()`
-- common attr - `symbol()`
+
+- Common behaviour - `play`
+- Common attributes - `Symbol`
 
 ```mermaid
+classDiagram
+
+   class Game {
+    -Board board
+    -Player[] players
+    }
+
+  class Player {
+    <<abstract>>
+    -Symbol symbol
+    +play(Board)* Cell
+  }
+
+  class HumanPlayer {
+    -String name
+    -String email
+    -Byte[] photo
+    +play(Board) Cell
+  }
+
+  class BotPlayer {
+    -Level level
+    +play(Board) Cell
+  }
+
+  Player <|-- HumanPlayer
+  Player <|-- BotPlayer
+
+  Game "1" --* "*" Player
 ```
+
+* ~~There is no common contract for players. Parent class to represent all different types of players.~~
+* ~~There is tight coupling between Game and different types of players. It is not extensible to support multiple players~~
+* OCP and SRP violation in play method.
+* Huge memory consumption - multiple instances of the player will be created for multiple games. Each instance has a new photo.
 
 ## Tight coupling
 -HumanPlayer
@@ -148,9 +183,125 @@ classDiagram
 ``mermaid
 ``
 
+
 ## OCP and SRP violation in play method - Strategy
 
 ## Huge memory consumption - Flyweight
 
+- Paul Morphy
+- Instance 1 -
+  - name - Paul Morphy
+  - email - paul@blind.in
+  - photo - 5MB
+  - symbol - O
+- Instance 2 -
+  - name - Paul Morphy
+  - email - paul@blind.in
+  - photo - 5MB
+  - symbol - X
+  
+- Store fields that do not change in a class - Intrinsic state
+- Store field that change in a class - Extrinsic state
 
 
+```mermaid
+classDiagram
+   class Game {
+    -Board board
+    -Player[] players
+    }
+
+  class Player {
+    <<abstract>>
+    -Symbol symbol
+    +play(Board)* Cell
+  }
+
+  class User {
+    -String name
+    -String email
+    -Byte[] photo
+  }
+
+  class HumanPlayer {
+    -User user
+    +play(Board) Cell
+  }
+
+  Player <|-- HumanPlayer
+  Game "1" --* "*" Player
+  
+  HumanPlayer "*" --o "1" User
+
+```
+
+* Problems so far
+* OCP and SRP violation in play method.
+
+
+### Implement different levels in a bot
+
+```java
+
+class BotPlayer {
+
+  private Level level;
+
+  private Cell play(Board board) {
+    switch (level) {
+      case EASY:
+        // Really easy move
+      case MEDIUM:
+        // Medium level moves
+    }
+  }
+}
+```
+
+```mermaid
+classDiagram
+    class BotPlayer {
+        -int id
+        -Level level
+        -Symbol symbol
+        -PlayingStrategy strategy
+        +play(Board) Cell
+    }
+
+    class PlayingStrategy {
+      <<interface>>
+      +play(Board) Cell
+    }
+
+    class RandomPlayingStrategy {
+      +play(Board) Cell
+    }
+
+    class MinMaxPlayingStrategy {
+      +play(Board) Cell
+    }
+
+    class AlphaBetaPlayingStrategy {
+      +play(Board) Cell
+    }
+
+    PlayingStrategy <|-- RandomPlayingStrategy
+
+    PlayingStrategy <|-- MinMaxPlayingStrategy
+
+    PlayingStrategy <|-- AlphaBetaPlayingStrategy
+
+    BotPlayer "*" --o "1" PlayingStrategy
+
+```
+
+* Inject different behaviours
+* Such that they can be reused
+  * Strategy Design pattern
+
+
+* There is no common contract for players. Parent class to represent all different types of players. - Abstract classes
+* There is tight coupling between Game and different types of players. It is not extensible to support multiple players - `List<Player>`
+* OCP and SRP violation in play method.
+  - Strategy pattern
+* Huge memory consumption - multiple instances of the player will be created for multiple games. Each instance has a new photo. - Flyweight
