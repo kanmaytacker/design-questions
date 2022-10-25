@@ -185,6 +185,18 @@ What will be the major classes and their attributes?
   * Name
   * Email
   
+List down the cardinalities of the relationships between the classes.
+
+* `ParkingLot` - `ParkingFloor` - **One to many**
+* `ParkingLot` - `ParkingGate` - `entryGates` - **One to many**
+* `ParkingLot` - `ParkingGate` - `exitGates` - **One to many**
+* `ParkingFloor` - `ParkingSpot` - **One to many**
+* `ParkingGate` - `ParkingAttendant` - `currentGate` - **One to one**
+* `ParkingSpot` - `ParkingTicket` - **One to many**
+* `ParkingTicket` - `Invoice` - **One to one**
+* `ParkingTicket` - `Vehicle` - **Many to one**
+* `ParkingTicket` - `ParkingSpot` - **Many to one**
+
 Draw the class diagram.
 ```mermaid
 classDiagram
@@ -309,7 +321,7 @@ classDiagram
 
     Vehicle "*" --o "1" VehicleType
 
-    ParkingGate "*" --o "1" ParkingAttendant
+    ParkingGate "1" --o "1" ParkingAttendant
     ParkingGate "*" --o "1" ParkingGateType
 
     ParkingSpot "*" --o "1" ParkingSpotType
