@@ -173,6 +173,7 @@ What will be the major classes and their attributes?
   
 * Payment
   * Amount
+  * Ticket
   * Type - `Cash, Credit Card, UPI`
   * Status - `Done, Pending`
   * Time
@@ -196,6 +197,7 @@ List down the cardinalities of the relationships between the classes.
 * `ParkingTicket` - `Invoice` - **One to one**
 * `ParkingTicket` - `Vehicle` - **Many to one**
 * `ParkingTicket` - `ParkingSpot` - **Many to one**
+* `Payment` - `ParkingTicket` - **One to one**
 
 Draw the class diagram.
 ```mermaid
@@ -239,6 +241,7 @@ classDiagram
 
     class Payment {
         +double amount
+        +ParkingTicket ticket
         +PaymentType type
         +PaymentStatus status
         +Date time
@@ -318,6 +321,7 @@ classDiagram
 
     Payment "*" --o "1" PaymentType
     Payment "*" --o "1" PaymentStatus
+    Payment "1" --o "1" ParkingTicket : paid for
 
     Vehicle "*" --o "1" VehicleType
 
