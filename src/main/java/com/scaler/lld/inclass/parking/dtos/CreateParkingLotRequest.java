@@ -1,19 +1,16 @@
 package com.scaler.lld.inclass.parking.dtos;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.scaler.lld.inclass.parking.generators.ParkingFloorId;
 import com.scaler.lld.inclass.parking.generators.ParkingSpotId;
+import com.scaler.lld.inclass.parking.models.EntryGate;
+import com.scaler.lld.inclass.parking.models.ExitGate;
 import com.scaler.lld.inclass.parking.models.ParkingFloor;
 import com.scaler.lld.inclass.parking.models.ParkingLot;
 import com.scaler.lld.inclass.parking.models.ParkingSpot;
 import com.scaler.lld.inclass.parking.models.PaymentCounter;
-import com.scaler.lld.inclass.parking.models.SpotStatus;
-import com.scaler.lld.inclass.parking.models.ParkingLot.ParkingLotBuilder;
-import com.scaler.lld.inclass.parking.models.EntryGate;
-import com.scaler.lld.inclass.parking.models.ExitGate;
 
 import lombok.Builder;
 import lombok.Getter;
