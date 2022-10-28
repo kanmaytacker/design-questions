@@ -5,12 +5,11 @@ import java.util.List;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
-@Builder
+@SuperBuilder
 public class ParkingFloor extends BaseModel {
-
-    private Integer floorNumber;
 
     @Builder.Default
     private List<ParkingSpot> parkingSpots = new ArrayList<>();

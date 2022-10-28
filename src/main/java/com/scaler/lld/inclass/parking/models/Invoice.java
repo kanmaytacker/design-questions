@@ -2,13 +2,13 @@ package com.scaler.lld.inclass.parking.models;
 
 import java.util.Date;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 public class Invoice extends BaseModel {
 
     private Date exitTime;

@@ -5,9 +5,10 @@ import java.util.List;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
-@Builder
+@SuperBuilder
 public class ParkingLot extends BaseModel {
 
     private String name;
