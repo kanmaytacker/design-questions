@@ -1,4 +1,4 @@
-package com.scaler.lld.inclass.parking.services;
+package com.scaler.lld.inclass.parking.repositories;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,7 +18,6 @@ public class Ticket extends BaseModel {
     private ParkingSpot parkingSpot;
 
     private LocalDateTime entryTime;
-    private TicketStatus status;
 
     private Long issuerId;
     private ParkingAttendant issuedBy;

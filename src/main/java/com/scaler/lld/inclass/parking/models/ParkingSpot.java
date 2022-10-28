@@ -1,10 +1,12 @@
 package com.scaler.lld.inclass.parking.models;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
+@Setter
 public class ParkingSpot extends BaseModel {
     private SpotType spotType;
     private SpotStatus spotStatus;

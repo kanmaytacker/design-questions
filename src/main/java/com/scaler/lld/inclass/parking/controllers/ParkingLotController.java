@@ -4,9 +4,12 @@ import com.scaler.lld.inclass.parking.dtos.CreateParkingLotRequest;
 import com.scaler.lld.inclass.parking.models.ParkingLot;
 import com.scaler.lld.inclass.parking.services.ParkingLotService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class ParkingLotController {
 
-    private ParkingLotService parkingLotService = new ParkingLotService();
+    private ParkingLotService parkingLotService;
 
     public ParkingLot createParkingLot(CreateParkingLotRequest request) {
         return parkingLotService.createParkingLot(request.toParkingLot());
