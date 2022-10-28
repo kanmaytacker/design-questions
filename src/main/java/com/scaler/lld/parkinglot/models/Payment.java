@@ -6,7 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Payment {
-    private String tickeId;
+    private String ticketId;
     private Integer amount;
-    private String mode;
+    private PaymentType mode;
+    private PaymentStatus status;
 }

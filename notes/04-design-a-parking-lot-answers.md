@@ -213,6 +213,11 @@ classDiagram
     class ParkingFloor {
         +int floorNumber
         +ParkingSpot[] parkingSpots
+        +PaymentCounter paymentCounter
+    }
+
+    class PaymentCounter {
+        +int counterNumber
     }
 
     class ParkingSpot {
@@ -236,7 +241,6 @@ classDiagram
         +ParkingTicket parkingTicket
         +double amount
         +Payment payment
-        +PaymentStatus paymentStatus
     }
 
     class Payment {
@@ -310,6 +314,7 @@ classDiagram
     ParkingLot "1" --* "*" ParkingGate : exitGates
 
     ParkingFloor "1" --* "*" ParkingSpot
+    ParkingFloor "1" -- "1" PaymentCounter
 
     ParkingTicket "*" --o "1" ParkingSpot : generated for 
     ParkingTicket "*" --o "1" Vehicle : generated for
