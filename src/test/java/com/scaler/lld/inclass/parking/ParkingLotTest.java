@@ -14,7 +14,25 @@ public class ParkingLotTest {
 
     @Test
     public void testCreateParkingLot() {
-        CreateParkingLotRequest request = CreateParkingLotRequest
+
+        CreateParkingLotRequest request = createLotRequest();
+        ParkingLot actual = parkingLotController.createParkingLot(request);
+
+        assertParkingLot(request, actual);
+    }
+
+    @Test
+    public void testCreateAndGet() {
+        CreateParkingLotRequest request = createLotRequest();
+        ParkingLot expected = parkingLotController.createParkingLot(request);
+
+        ParkingLot actual = parkingLotController.getParkingLot(expected.getId());
+
+        assertParkingLot(request, actual);
+    }
+
+    private static CreateParkingLotRequest createLotRequest() {
+        return CreateParkingLotRequest
                 .builder()
                 .id(1L)
                 .name("ABC Parking")
@@ -23,8 +41,10 @@ public class ParkingLotTest {
                 .numberOfSlotsPerFloor(10)
                 .numberOfGates(2)
                 .build();
+    }
 
-        ParkingLot actual = parkingLotController.createParkingLot(request);
+    private static void assertParkingLot(CreateParkingLotRequest request, ParkingLot actual) {
+
         assertNotNull("If parking lot is created, it should not be null", actual);
 
         assertEquals("If parking lot is created, it should have same id as requested", request.getId(), actual.getId());
@@ -38,4 +58,5 @@ public class ParkingLotTest {
         assertEquals("If parking lot is created, it should have same number of entry gates as requested",
                 request.getNumberOfGates(), actual.getEntryGates().size());
     }
+
 }

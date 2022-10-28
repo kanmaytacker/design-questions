@@ -11,4 +11,8 @@ public class ParkingLotController {
     public ParkingLot createParkingLot(CreateParkingLotRequest request) {
         return parkingLotService.createParkingLot(request.toParkingLot());
     }
+
+    public ParkingLot getParkingLot(Long id) {
+        return parkingLotService.getParkingLot(id);
+    }
 }

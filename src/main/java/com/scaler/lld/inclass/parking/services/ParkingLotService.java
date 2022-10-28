@@ -10,4 +10,8 @@ public class ParkingLotService {
         return parkingLotRepository.save(parkingLot);
     }
 
+    public ParkingLot getParkingLot(Long id) {
+        return parkingLotRepository.findById(id);
+    }
+
 }
