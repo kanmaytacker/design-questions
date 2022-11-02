@@ -14,12 +14,20 @@ public class RandomEvictionStrategy<KEY, VALUE> implements EvictionStrategy<KEY,
 
     @Override
     public KEY evict() {
-        int randomIndex = ThreadLocalRandom.current().nextInt(keys.size()) % keys.size();
+        int randomIndex = ThreadLocalRandom
+                .current()
+                .nextInt(keys.size())
+                % keys.size();
+
         return keys.get(randomIndex);
     }
 
     @Override
     public void notifyChange(EventType eventType, KEY key) {
+        if (eventType == EventType.READ) {
+            return;
+        }
+
         keys.add(key);
     }
 
