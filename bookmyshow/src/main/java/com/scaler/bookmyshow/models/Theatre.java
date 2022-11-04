@@ -16,4 +16,7 @@ public class Theatre extends BaseModel {
 
     @Builder.Default
     private List<Hall> halls = new ArrayList<>();
+
+    @Builder.Default
+    private List<Show> shows = new ArrayList<>();
 }
