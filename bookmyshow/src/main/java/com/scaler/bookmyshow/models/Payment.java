@@ -3,22 +3,27 @@ package com.scaler.bookmyshow.models;
 import com.scaler.bookmyshow.enums.PaymentMode;
 import com.scaler.bookmyshow.enums.PaymentStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
+@Entity
 public class Payment extends BaseModel {
 
-    private final String referenceId;
+    @Enumerated
+    private PaymentMode mode;
 
-    private final Double amount;
+    @Enumerated
+    private PaymentStatus status;
+    private Double amount;
+    private String referenceId;
 
-    private final PaymentMode mode;
-
-    private final PaymentStatus status;
-
-    public Payment(Long id, Date createdAt, Date updatedAt, String referenceId, Double amount, PaymentMode mode, PaymentStatus status) {
-        super(id, createdAt, updatedAt);
+    public Payment(Date createdAt, Date updatedAt, String referenceId, Double amount, PaymentMode mode, PaymentStatus status) {
+        super(createdAt, updatedAt);
         this.referenceId = referenceId;
         this.amount = amount;
         this.mode = mode;

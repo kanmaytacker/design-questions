@@ -1,24 +1,29 @@
 package com.scaler.bookmyshow.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.scaler.bookmyshow.enums.MovieFeature;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Getter
+@Entity
+@NoArgsConstructor
 public class Hall extends BaseModel {
 
     private Integer hallNumber;
 
-    @Builder.Default
-    private List<Seat> seats = new ArrayList<>();
+    @ElementCollection
+    @Enumerated
+    private List<MovieFeature> features = new ArrayList<>();
 
-    public Hall(Long id, Date createdAt, Date updatedAt, Integer hallNumber) {
-        super(id, createdAt, updatedAt);
+    public Hall(Date createdAt, Date updatedAt, Integer hallNumber) {
+        super(createdAt, updatedAt);
         this.hallNumber = hallNumber;
     }
 }

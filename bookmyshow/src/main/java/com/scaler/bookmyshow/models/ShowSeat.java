@@ -2,21 +2,28 @@ package com.scaler.bookmyshow.models;
 
 import com.scaler.bookmyshow.enums.SeatStatus;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
+@Entity
 public class ShowSeat extends BaseModel {
 
     private Double price;
 
+    @Enumerated
     private SeatStatus status;
 
+    @ManyToOne
     private Seat seat;
 
-    public ShowSeat(Long id, Date createdAt, Date updatedAt, Double price, SeatStatus status, Seat seat) {
-        super(id, createdAt, updatedAt);
+    public ShowSeat(Date createdAt, Date updatedAt, Double price, SeatStatus status, Seat seat) {
+        super(createdAt, updatedAt);
         this.price = price;
         this.status = status;
         this.seat = seat;

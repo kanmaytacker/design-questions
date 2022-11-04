@@ -2,21 +2,27 @@ package com.scaler.bookmyshow.models;
 
 import com.scaler.bookmyshow.enums.SeatType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 @Getter
+@Entity
+@NoArgsConstructor
 public class Seat extends BaseModel {
 
-    private final Integer row;
-    private final Integer column;
+    private Integer rowNumber;
+    private Integer columnNumber;
 
-    private final SeatType type;
+    @Enumerated
+    private SeatType type;
 
-    public Seat(Long id, Date createdAt, Date updatedAt, Integer row, Integer column, SeatType type) {
-        super(id, createdAt, updatedAt);
-        this.row = row;
-        this.column = column;
+    public Seat(Date createdAt, Date updatedAt, Integer row, Integer column, SeatType type) {
+        super(createdAt, updatedAt);
+        this.rowNumber = row;
+        this.columnNumber = column;
         this.type = type;
     }
 }
