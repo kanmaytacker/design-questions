@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@SuperBuilder
 @Getter
 public class Theatre extends BaseModel {
 
@@ -19,4 +19,12 @@ public class Theatre extends BaseModel {
 
     @Builder.Default
     private List<Show> shows = new ArrayList<>();
+
+    public Theatre(Long id, Date createdAt, Date updatedAt, String name, String address, List<Hall> halls, List<Show> shows) {
+        super(id, createdAt, updatedAt);
+        this.name = name;
+        this.address = address;
+        this.halls = halls;
+        this.shows = shows;
+    }
 }

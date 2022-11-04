@@ -1,14 +1,12 @@
 package com.scaler.bookmyshow.models;
 
 import com.scaler.bookmyshow.enums.TicketStatus;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@SuperBuilder
 @Getter
 public class Ticket extends BaseModel {
 
@@ -16,7 +14,6 @@ public class Ticket extends BaseModel {
 
     private User user;
 
-    @Builder.Default
     private List<ShowSeat> seats = new ArrayList<>();
 
     private Double amount;
@@ -25,4 +22,13 @@ public class Ticket extends BaseModel {
 
     private Payment payment;
 
+    public Ticket(Long id, Date createdAt, Date updatedAt, Show show, User user, List<ShowSeat> seats, Double amount, TicketStatus status, Payment payment) {
+        super(id, createdAt, updatedAt);
+        this.show = show;
+        this.user = user;
+        this.seats = seats;
+        this.amount = amount;
+        this.status = status;
+        this.payment = payment;
+    }
 }

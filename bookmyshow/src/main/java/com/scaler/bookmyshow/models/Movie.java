@@ -2,14 +2,12 @@ package com.scaler.bookmyshow.models;
 
 import com.scaler.bookmyshow.enums.Language;
 import com.scaler.bookmyshow.enums.MovieFeature;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@SuperBuilder
 @Getter
 public class Movie extends BaseModel {
 
@@ -17,11 +15,17 @@ public class Movie extends BaseModel {
     private Integer duration;
     private Double rating;
 
-    @Builder.Default
     private List<Language> languages = new ArrayList<>();
 
-    @Builder.Default
     private List<MovieFeature> features = new ArrayList<>();
 
-
+    public Movie(Long id, Date createdAt, Date updatedAt, String name, Integer duration,
+                 Double rating, List<Language> languages, List<MovieFeature> features) {
+        super(id, createdAt, updatedAt);
+        this.name = name;
+        this.duration = duration;
+        this.rating = rating;
+        this.languages = languages;
+        this.features = features;
+    }
 }

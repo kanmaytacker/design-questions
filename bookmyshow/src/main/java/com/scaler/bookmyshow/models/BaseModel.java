@@ -1,12 +1,12 @@
 package com.scaler.bookmyshow.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
-@SuperBuilder
 @Getter
+@AllArgsConstructor
 public class BaseModel {
 
     private Long id;
@@ -14,5 +14,4 @@ public class BaseModel {
     private Date createdAt;
 
     private Date updatedAt;
-
 }
