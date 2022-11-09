@@ -42,8 +42,8 @@ Note: All pieces except Knight cannot jump any other piece. Knight can jump over
 ## Expectations
 * Code should be functionally correct.
 * Code should be modular and readable. Clean and professional level code.
-* Code should be extesible and scalable. Means it should be able to accomodate new requirements with minimal changes.
-* Code should have good OOPs design.
+* Code should be extensible and scalable. Means it should be able to accommodate new requirements with minimal changes.
+* Code should have good OOP design principles.
 
 ## Requirements gathering
 
