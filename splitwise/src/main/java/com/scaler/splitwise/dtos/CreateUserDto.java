@@ -11,11 +11,11 @@ public class CreateUserDto {
     private String phoneNumber;
     private String password;
 
-    public User user() {
+    public User user(String encodedPassword) {
         User user = new User();
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
-        user.setHashedPassword(password);
+        user.setHashedPassword(encodedPassword);
         return user;
     }
 }
