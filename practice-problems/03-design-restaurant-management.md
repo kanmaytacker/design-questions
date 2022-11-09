@@ -1,6 +1,19 @@
 
 # Design a Restaurant Management System
 
+- [Design a Restaurant Management System](#design-a-restaurant-management-system)
+  - [Expectations](#expectations)
+  - [Requirements gathering](#requirements-gathering)
+  - [Requirements](#requirements)
+  - [Use case diagrams](#use-case-diagrams)
+    - [Actors](#actors)
+    - [Use cases](#use-cases)
+      - [Actor 1](#actor-1)
+      - [Actor 2](#actor-2)
+      - [Actor 3](#actor-3)
+  - [Class diagram](#class-diagram)
+  - [API design](#api-design)
+  
 Restaurants (including bars, food trucks, and other foodservice businesses) have unique needs that a conventional POS system may not meet. For example, a typical feature is an ingredient-level inventory that lets you track items that make up your menu down to the last clove of garlic. This solves one of the main pain points in running a restaurant: how to do inventory. That’s something you won’t find in a retail POS, which usually count inventory stocks by-product and not what comprises it. A restaurant management system may also run on your tablet, so waiting staff can take orders and alert the kitchen and counter even before leaving the table.
 
 

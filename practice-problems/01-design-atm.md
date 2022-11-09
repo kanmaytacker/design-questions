@@ -1,5 +1,20 @@
 # Design an ATM
 
+- [Design an ATM](#design-an-atm)
+  - [Context](#context)
+    - [How ATM works?](#how-atm-works)
+  - [Expectations](#expectations)
+  - [Requirements gathering](#requirements-gathering)
+  - [Requirements](#requirements)
+  - [Use case diagrams](#use-case-diagrams)
+    - [Actors](#actors)
+    - [Use cases](#use-cases)
+      - [Actor 1](#actor-1)
+      - [Actor 2](#actor-2)
+      - [Actor 3](#actor-3)
+  - [Class diagram](#class-diagram)
+
+
 ## Context
 
 > ATM is a machine that allows customers to perform financial transactions without the need for a human teller.
