@@ -2,10 +2,12 @@ package com.scaler.splitwise.dtos;
 
 import com.scaler.splitwise.models.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
+@Builder
 public class CreateUserDto {
     private String name;
     private String phoneNumber;
