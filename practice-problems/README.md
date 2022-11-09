@@ -8,13 +8,13 @@ This directory contains practice problems for low level design interview questio
 ## Line up
 
 ### Real world problems
-* [Design an ATM](01-design-atm.md)
+* [Design an ATM](01-design-atm-worksheet.md)
 
 ### Games
-* [Design a chess game](02-design-chess-game.md)
+* [Design a chess game](02-design-chess-worksheet.md)
 
 ### Management Systems
-* [Design a restaurant management system](03-design-restaurant-management-system.md)
+* [Design a restaurant management system](03-design-restaurant-mgmt-worksheet.md)
 
 ## Coming up
 * Adapted solutions for the problems above
