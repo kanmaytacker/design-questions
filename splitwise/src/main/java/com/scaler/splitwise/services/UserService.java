@@ -7,6 +7,9 @@ import com.scaler.splitwise.services.interfaces.PasswordEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -21,5 +24,9 @@ public class UserService {
 
     public User getUser(Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public List<User> getUsers(Set<Long> userIds) {
+        return repository.findAllById(userIds);
     }
 }
