@@ -66,10 +66,13 @@ public class GroupService {
     }
 
     public List<SettleUpTransaction> settle(Long groupId) {
-        List<GroupExpense> groupExpenses = groupExpenseRepository.findGroupExpensesByGroup_Id(groupId);
-        List<Expense> expenses = groupExpenses.stream()
+        List<Expense> expenses = getExpenses(groupId).stream()
                 .map(GroupExpense::getExpense)
                 .collect(Collectors.toList());
         return settlementService.settle(expenses);
+    }
+
+    public List<GroupExpense> getExpenses(Long groupId) {
+        return groupExpenseRepository.findGroupExpensesByGroup_Id(groupId);
     }
 }
