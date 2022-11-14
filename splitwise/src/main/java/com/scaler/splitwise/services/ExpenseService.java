@@ -32,7 +32,7 @@ public class ExpenseService {
         return expense;
     }
 
-    private static Map<User, Long> fromUserIds(Map<Long, Long> users, Map<Long, User> idToUsers) {
+    private static Map<User, Double> fromUserIds(Map<Long, Double> users, Map<Long, User> idToUsers) {
         return users.entrySet().stream()
                 .collect(Collectors.toMap(
                         entry -> idToUsers.get(entry.getKey()),

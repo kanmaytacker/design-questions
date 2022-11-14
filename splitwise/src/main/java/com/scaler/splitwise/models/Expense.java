@@ -13,9 +13,9 @@ import java.util.*;
 public class Expense extends BaseModel {
 
     @ElementCollection
-    Map<User, Long> paidBy = new HashMap<>();
+    Map<User, Double> paidBy = new HashMap<>();
     @ElementCollection
-    Map<User, Long> owedBy = new HashMap<>();
+    Map<User, Double> owedBy = new HashMap<>();
     private String description;
     private Double amount;
     @Enumerated

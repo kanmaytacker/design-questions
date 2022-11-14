@@ -21,7 +21,7 @@ public class CreateExpenseDto {
 
     private List<Long> users = new ArrayList<>();
 
-    private Map<Long, Long> paidBy = new HashMap<>();
+    private Map<Long, Double> paidBy = new HashMap<>();
 
-    private Map<Long, Long> owedBy = new HashMap<>();
+    private Map<Long, Double> owedBy = new HashMap<>();
 }

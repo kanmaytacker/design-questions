@@ -6,7 +6,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class SettleUpTransaction {
-    private User from;
-    private User to;
+    private Long from;
+    private Long to;
     private Double amount;
 }
