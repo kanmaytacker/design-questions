@@ -1,12 +1,8 @@
 package com.scaler.splitwise.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.scaler.splitwise.dtos.CreateExpenseDto;
 import com.scaler.splitwise.dtos.CreateGroupDto;
-import com.scaler.splitwise.models.Expense;
-import com.scaler.splitwise.models.Group;
-import com.scaler.splitwise.models.GroupExpense;
-import com.scaler.splitwise.models.User;
+import com.scaler.splitwise.models.*;
 import com.scaler.splitwise.repositories.GroupExpenseRepository;
 import com.scaler.splitwise.repositories.GroupRepository;
 import lombok.AllArgsConstructor;
@@ -29,13 +25,15 @@ public class GroupService {
     private UserService userService;
     private ExpenseService expenseService;
 
+    private SettlementService settlementService;
+
     private static Set<Long> collateUserIds(CreateGroupDto request) {
         return Stream.of(request.getAdmins(), request.getMembers())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toSet());
     }
 
-    public Group createGroup(CreateGroupDto request) throws JsonProcessingException {
+    public Group createGroup(CreateGroupDto request) {
         Set<Long> userIds = collateUserIds(request);
 
         List<User> users = userService.getUsers(userIds);
@@ -65,5 +63,13 @@ public class GroupService {
 
         GroupExpense groupExpense = new GroupExpense(group, expense);
         return groupExpenseRepository.save(groupExpense);
+    }
+
+    public List<SettleUpTransaction> settle(Long groupId) {
+        List<GroupExpense> groupExpenses = groupExpenseRepository.findGroupExpensesByGroup_Id(groupId);
+        List<Expense> expenses = groupExpenses.stream()
+                .map(GroupExpense::getExpense)
+                .collect(Collectors.toList());
+        return settlementService.settle(expenses);
     }
 }
