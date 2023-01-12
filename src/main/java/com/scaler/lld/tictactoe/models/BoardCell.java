@@ -9,4 +9,9 @@ public class BoardCell {
     private Integer row;
     private Integer column;
     private GameSymbol symbol;
+
+    public BoardCell(Integer row, Integer column) {
+        this.row = row;
+        this.column = column;
+    }
 }
