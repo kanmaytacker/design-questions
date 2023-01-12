@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.scaler.lld.tictactoe.models.Board;
 import com.scaler.lld.tictactoe.models.BoardCell;
+import com.scaler.lld.tictactoe.models.Move;
 
 public class RandomPlayingStrategy implements PlayingStrategy {
 
     @Override
-    public BoardCell play(Board board) {
+    public Move play(Board board) {
 
         // Get the available cells
         List<BoardCell> availableCells = board.getAvailableCells();
@@ -17,7 +18,8 @@ public class RandomPlayingStrategy implements PlayingStrategy {
         int randomIndex = (int) (Math.random() * availableCells.size());
 
         // Return the random cell
-        return availableCells.get(randomIndex);
+        BoardCell randomCell = availableCells.get(randomIndex);
+        return new Move(randomCell.getRow(), randomCell.getColumn());
     }
     
 }

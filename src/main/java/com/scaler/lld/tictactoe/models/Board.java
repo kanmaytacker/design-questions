@@ -28,4 +28,19 @@ public class Board {
     public List<BoardCell> getAvailableCells() {
         return cells.stream().flatMap(List::stream).filter(cell -> cell.getSymbol() == null).toList();
     }
+
+    public void printBoard() {
+        for (int i = 0; i < cells.size(); ++i) {
+            for (int j = 0; j < cells.size(); ++j) {
+                GameSymbol symbol = cells.get(i).get(j).getSymbol();
+
+                if (symbol == null) {
+                    System.out.printf(" | - | ");
+                } else {
+                    System.out.printf(" | " + symbol + " | ");
+                }
+            }
+            System.out.printf("\n");
+        }
+    }
 }

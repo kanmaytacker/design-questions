@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.scaler.lld.tictactoe.models.Board;
 import com.scaler.lld.tictactoe.models.BoardCell;
 import com.scaler.lld.tictactoe.models.GameSymbol;
+import com.scaler.lld.tictactoe.models.Move;
 
 public class RandomPlayingStrategyTest {
 
@@ -34,10 +35,9 @@ public class RandomPlayingStrategyTest {
         // Test
 
         RandomPlayingStrategy strategy = new RandomPlayingStrategy();
-        BoardCell cell = strategy.play(board);
+        Move cell = strategy.play(board);
 
         assertNotNull("If there is a valid move, cell should not be null", cell);
-        assertNull("If there is a valid move, symbol in cell should be null", cell.getSymbol());
 
         assertEquals("If there is only one valid move, row should be same value", 0, cell.getRow().intValue());
         assertEquals("If there is only one valid move, column should be same value", 0, cell.getColumn().intValue());

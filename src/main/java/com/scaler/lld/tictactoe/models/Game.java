@@ -19,7 +19,7 @@ public class Game {
         return new Builder();
     }
 
-    private Player getNextPlayer() {
+    public Player getNextPlayer() {
         return players.get(nextPlayerIndex);
     }
 
@@ -33,14 +33,16 @@ public class Game {
 
         // Validate if the cell is not empty
         // If not, throw a custom exception
-        if (board.isEmpty(move.getRow(), move.getColumn())) {
+        if (!board.isEmpty(move.getRow(), move.getColumn())) {
             throw new RuntimeException("Cell is not empty");
         }
+        System.out.println("Move happened at row: " + move.getRow() + " Column: " + move.getColumn());
+
 
         // Update the board
         board.getCells().get(move.getRow()).get(move.getColumn()).setSymbol(player.getSymbol());
 
-        if (checkWinner()) {
+        if (checkWinner(player.getSymbol())) {
             status = GameStatus.ENDED;
             return;
         }
@@ -51,17 +53,34 @@ public class Game {
         }
 
         // Update the next player index
-        nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
+        this.nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
+        System.out.println("Next player index: " + this.nextPlayerIndex);
     }
 
-    public boolean checkWinner() {
-        // Check if the game is over
+    public boolean checkWinner(GameSymbol gameSymbol) {
+        // Check if any 3 consecutive on the row
+        return checkRows(gameSymbol);
+    }
+
+    private boolean checkRows(GameSymbol gameSymbol) {
+        List<List<BoardCell>> cells = board.getCells();
+        for (List<BoardCell> row : cells) {
+            boolean isWinner = true;
+            for (BoardCell cell : row) {
+                if (cell.getSymbol() != gameSymbol) {
+                    isWinner = false;
+                    break;
+                }
+            }
+            if (isWinner) {
+                return true;
+            }
+        }
         return false;
     }
 
     private boolean checkDraw() {
-        // Check if the game is draw
-        return false;
+        return board.getAvailableCells().isEmpty(); 
     }
 
     public static class Builder {
@@ -93,6 +112,7 @@ public class Game {
                 throw new RuntimeException("Game is not valid");
             }
 
+            this.game.setStatus(GameStatus.IN_PROGRESS);
             return this.game;
         }
 
@@ -100,5 +120,9 @@ public class Game {
             game.getPlayers().add(player);
             return this;
         }
+    }
+
+    public void printBoard() {
+        board.printBoard();
     }
 }

@@ -15,8 +15,7 @@ public class Bot extends Player {
 
     @Override
     public Move play(Board board) {
-        // TODO Auto-generated method stub
-        return null;
+        return playingStrategy.play(board);
     }
 
 }
