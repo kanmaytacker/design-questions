@@ -10,7 +10,7 @@ import com.scaler.lld.tictactoe.models.Game;
 import com.scaler.lld.tictactoe.models.GameSymbol;
 import com.scaler.lld.tictactoe.models.HumanPlayer;
 import com.scaler.lld.tictactoe.models.User;
-import com.scaler.lld.tictactoe.strategies.DefaultPlayingStrategy;
+import com.scaler.lld.tictactoe.strategies.RandomPlayingStrategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class TicTacToeTest {
         Bot bot = Bot
                 .builder()
                 .symbol(GameSymbol.O)
-                .playingStrategy(new DefaultPlayingStrategy())
+                .playingStrategy(new RandomPlayingStrategy())
                 .build();
 
         Game game = Game.getBuilder()

@@ -14,7 +14,7 @@ public class Bot extends Player {
     private PlayingStrategy playingStrategy;
 
     @Override
-    public BoardCell play(Board board) {
+    public Move play(Board board) {
         // TODO Auto-generated method stub
         return null;
     }

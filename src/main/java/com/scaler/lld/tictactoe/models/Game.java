@@ -3,8 +3,6 @@ package com.scaler.lld.tictactoe.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.scaler.lld.tictactoe.strategies.WinningStrategy;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,10 +12,36 @@ public class Game {
 
     private Board board;
     private List<Player> players = new ArrayList<>();
-    private WinningStrategy strategy;
+    private GameStatus status;
+    private int nextPlayerIndex = 0;
 
     public static Builder getBuilder() {
         return new Builder();
+    }
+
+    private Player getNextPlayer() {
+        return players.get(nextPlayerIndex);
+    }
+
+    public void makeMove() {
+
+        // Get the next player
+
+        // Get the move from the player. You can use Scanner to get the input from the user
+
+        // Validate if the cell is not empty
+        // If not, throw a custom exception
+
+
+        // Update the board
+
+        // Check if the game is over
+
+
+        // Check if the game is draw
+
+
+        // Update the next player index
     }
 
     public static class Builder {

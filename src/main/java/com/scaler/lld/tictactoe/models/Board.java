@@ -17,4 +17,12 @@ public class Board {
         List<List<BoardCell>> rowCells = Collections.nCopies(rows, columnCells);
         this.cells = rowCells;
     }
+
+    public boolean isEmpty(int row, int column) {
+        return cells.get(row).get(column).getSymbol() == null;
+    }
+
+    public List<BoardCell> getAvailableCells() {
+        return cells.stream().flatMap(List::stream).filter(cell -> cell.getSymbol() == null).toList();
+    }
 }

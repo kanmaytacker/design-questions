@@ -11,5 +11,5 @@ public abstract class Player {
    
     private GameSymbol symbol;
 
-    public abstract BoardCell play(Board board);
+    public abstract Move play(Board board);
 }
