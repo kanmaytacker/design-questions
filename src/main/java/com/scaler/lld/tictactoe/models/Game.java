@@ -26,22 +26,42 @@ public class Game {
     public void makeMove() {
 
         // Get the next player
+        Player player = getNextPlayer();
 
         // Get the move from the player. You can use Scanner to get the input from the user
+        Move move = player.play(board);
 
         // Validate if the cell is not empty
         // If not, throw a custom exception
-
+        if (board.isEmpty(move.getRow(), move.getColumn())) {
+            throw new RuntimeException("Cell is not empty");
+        }
 
         // Update the board
+        board.getCells().get(move.getRow()).get(move.getColumn()).setSymbol(player.getSymbol());
 
-        // Check if the game is over
+        if (checkWinner()) {
+            status = GameStatus.ENDED;
+            return;
+        }
 
-
-        // Check if the game is draw
-
+        if (checkDraw()) {
+            status = GameStatus.DRAW;
+            return;
+        }
 
         // Update the next player index
+        nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
+    }
+
+    public boolean checkWinner() {
+        // Check if the game is over
+        return false;
+    }
+
+    private boolean checkDraw() {
+        // Check if the game is draw
+        return false;
     }
 
     public static class Builder {
