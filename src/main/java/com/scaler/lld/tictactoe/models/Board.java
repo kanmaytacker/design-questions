@@ -1,7 +1,6 @@
 package com.scaler.lld.tictactoe.models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
