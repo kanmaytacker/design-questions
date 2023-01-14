@@ -1,4 +1,23 @@
 # Design a parking lot
+- [Design a parking lot](#design-a-parking-lot)
+  - [Requirements gathering](#requirements-gathering)
+  - [Requirements](#requirements)
+  - [Use case diagrams](#use-case-diagrams)
+    - [Actors](#actors)
+    - [Use cases](#use-cases)
+      - [Actor 1](#actor-1)
+      - [Actor 2](#actor-2)
+      - [Actor 3](#actor-3)
+  - [API design](#api-design)
+    - [Admin APIs](#admin-apis)
+      - [Parking lot APIs](#parking-lot-apis)
+      - [Parking spot APIs](#parking-spot-apis)
+    - [Parking attendant APIs](#parking-attendant-apis)
+      - [Check empty slots](#check-empty-slots)
+      - [Issue a ticket](#issue-a-ticket)
+    - [Collect payment](#collect-payment)
+    - [Checkout](#checkout)
+  - [Class diagram](#class-diagram)
 
 > A parking lot or car park is a dedicated cleared area that is intended for parking vehicles. In most countries where cars are a major mode of transportation, parking lots are a feature of every city and suburban area. Shopping malls, sports stadiums, megachurches, and similar venues often feature parking lots over large areas
 [Reference](https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-parking-lot.md)
@@ -133,6 +152,109 @@ rectangle FastAndCalm {
     Checkout .> (CheckPaymentStatus) : includes
 }
 @enduml
+```
+
+## API design
+
+What will be some APIs that you would design for this system?
+
+Look at the use cases and try to design APIs for each of them.
+
+You can simply write the APIs in the following format:
+`API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
+
+You could also use a tool like [Swagger](https://swagger.io/) to design the APIs or follow [this](https://github.com/jamescooke/restapidocs) repository for a simple way to use Markdown to structure your API documentation.
+
+### Admin APIs
+
+All the various use cases are simple CRUD operations. We can design the following APIs for the admin:
+
+#### Parking lot APIs
+* `createParkingLot` - `POST /parking-lot` - Request body: `ParkingLot`
+* `getParkingLot` - `GET /parking-lot/{id}` - Response body: `ParkingLot`
+* `getAllParkingLots` - `GET /parking-lot` - Response body: `List<ParkingLot>`
+* `updateParkingLot` - `PUT /parking-lot/{id}` - Request body: `ParkingLot`
+* `deleteParkingLot` - `DELETE /parking-lot/{id}`
+
+Similarly, we can design APIs for `ParkingFloor`, `ParkingSpot`.
+
+#### Parking spot APIs
+* `createParkingSpot` - `POST /parking-spot` - Request body: `ParkingSpot`
+* `getParkingSpot` - `GET /parking-spot/{id}` - Response body: `ParkingSpot`
+* `getAllParkingSpots` - `GET /parking-spot` - Response body: `List<ParkingSpot>`
+* `updateParkingSpot` - `PUT /parking-spot/{id}` - Request body: `ParkingSpot`
+* `deleteParkingSpot` - `DELETE /parking-spot/{id}`
+
+You might also want an API to `Update status of a parking spot`. This can be done by using the existing `updateParkingSpot` API or by creating a new API that only updates the status of the parking spot.
+
+* `updateParkingSpotStatus` - `PUT /parking-spot/{id}/status` - Request body: `ParkingSpotStatus`
+* `getParkingSpotStatus` - `GET /parking-spot/{id}/status` - Response body: `ParkingSpotStatus`
+
+### Parking attendant APIs
+
+Use cases:
+1. `Check empty slots`
+2. `Issue a ticket` - `Allocating a slot`
+3. `Collect payment`
+4. `Checkout` - `Has the user paid?`
+
+#### Check empty slots
+
+Let us look at the various requirements for a parking spot:
+* CRUD on parking spots
+* Get all parking spots
+* Get all available parking spots
+
+We can augment our current `getAllParkingSpots` API by adding a query parameter to filter the parking spots based on their status. This will allow us to get all the available parking spots as well.
+
+**Get all parking spots**
+* `getAllParkingSpots` - `GET /parking-spot` - Response body: `List<ParkingSpot>`
+
+**Get all available parking spots**
+* `getAllParkingSpots` - `GET /parking-spot?status=AVAILABLE` - Response body: `List<ParkingSpot>`
+
+**Get all occupied parking spots**
+* `getAllParkingSpots` - `GET /parking-spot?status=OCCUPIED` - Response body: `List<ParkingSpot>`
+
+#### Issue a ticket
+
+* `issueTicket` - `POST /ticket` - Request body: `TicketRequest` - Response body: `Ticket`
+
+We might not want to use the current `Ticket` class for the request body since it contains a lot of information that is either not required or is not available at the time of ticket generation. We can create a new class `TicketRequest` that contains only the required information.
+
+```mermaid
+classDiagram
+    class TicketRequest {
+        +String licensePlate
+        +VehicleType vehicleType
+    }
+```
+
+### Collect payment
+
+* `collectPayment` - `POST /payment` - Request body: `PaymentRequest` - Response body: `Payment`
+
+PaymentRequest:
+```mermaid
+classDiagram
+    class PaymentRequest {
+        +String ticketId
+        +PaymentType paymentType
+    }
+```
+
+### Checkout
+
+* `checkout` - `POST /checkout` - Request body: `CheckoutRequest` - Response body: `CheckoutResponse`
+
+CheckoutRequest:
+```mermaid
+classDiagram
+    class CheckoutRequest {
+        +String ticketId
+        +Date checkoutTime
+        +String exitGateId
+    }
 ```
 
 ## Class diagram
@@ -346,109 +468,6 @@ Look for differences between your class diagram and the one in the solution. Lis
 3.
 4.
 5.
-```
-
-## API design
-
-What will be some APIs that you would design for this system?
-
-Look at the use cases and try to design APIs for each of them.
-
-You can simply write the APIs in the following format:
-`API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
-
-You could also use a tool like [Swagger](https://swagger.io/) to design the APIs or follow [this](https://github.com/jamescooke/restapidocs) repository for a simple way to use Markdown to structure your API documentation.
-
-### Admin APIs
-
-All the various use cases are simple CRUD operations. We can design the following APIs for the admin:
-
-#### Parking lot APIs
-* `createParkingLot` - `POST /parking-lot` - Request body: `ParkingLot`
-* `getParkingLot` - `GET /parking-lot/{id}` - Response body: `ParkingLot`
-* `getAllParkingLots` - `GET /parking-lot` - Response body: `List<ParkingLot>`
-* `updateParkingLot` - `PUT /parking-lot/{id}` - Request body: `ParkingLot`
-* `deleteParkingLot` - `DELETE /parking-lot/{id}`
-
-Similarly, we can design APIs for `ParkingFloor`, `ParkingSpot`.
-
-#### Parking spot APIs
-* `createParkingSpot` - `POST /parking-spot` - Request body: `ParkingSpot`
-* `getParkingSpot` - `GET /parking-spot/{id}` - Response body: `ParkingSpot`
-* `getAllParkingSpots` - `GET /parking-spot` - Response body: `List<ParkingSpot>`
-* `updateParkingSpot` - `PUT /parking-spot/{id}` - Request body: `ParkingSpot`
-* `deleteParkingSpot` - `DELETE /parking-spot/{id}`
-
-You might also want an API to `Update status of a parking spot`. This can be done by using the existing `updateParkingSpot` API or by creating a new API that only updates the status of the parking spot.
-
-* `updateParkingSpotStatus` - `PUT /parking-spot/{id}/status` - Request body: `ParkingSpotStatus`
-* `getParkingSpotStatus` - `GET /parking-spot/{id}/status` - Response body: `ParkingSpotStatus`
-
-### Parking attendant APIs
-
-Use cases:
-1. `Check empty slots`
-2. `Issue a ticket` - `Allocating a slot`
-3. `Collect payment`
-4. `Checkout` - `Has the user paid?`
-
-#### Check empty slots
-
-Let us look at the various requirements for a parking spot:
-* CRUD on parking spots
-* Get all parking spots
-* Get all available parking spots
-
-We can augment our current `getAllParkingSpots` API by adding a query parameter to filter the parking spots based on their status. This will allow us to get all the available parking spots as well.
-
-**Get all parking spots**
-* `getAllParkingSpots` - `GET /parking-spot` - Response body: `List<ParkingSpot>`
-
-**Get all available parking spots**
-* `getAllParkingSpots` - `GET /parking-spot?status=AVAILABLE` - Response body: `List<ParkingSpot>`
-
-**Get all occupied parking spots**
-* `getAllParkingSpots` - `GET /parking-spot?status=OCCUPIED` - Response body: `List<ParkingSpot>`
-
-#### Issue a ticket
-
-* `issueTicket` - `POST /ticket` - Request body: `TicketRequest` - Response body: `Ticket`
-
-We might not want to use the current `Ticket` class for the request body since it contains a lot of information that is either not required or is not available at the time of ticket generation. We can create a new class `TicketRequest` that contains only the required information.
-
-```mermaid
-classDiagram
-    class TicketRequest {
-        +String licensePlate
-        +VehicleType vehicleType
-    }
-```
-
-### Collect payment
-
-* `collectPayment` - `POST /payment` - Request body: `PaymentRequest` - Response body: `Payment`
-
-PaymentRequest:
-```mermaid
-classDiagram
-    class PaymentRequest {
-        +String ticketId
-        +PaymentType paymentType
-    }
-```
-
-### Checkout
-
-* `checkout` - `POST /checkout` - Request body: `CheckoutRequest` - Response body: `CheckoutResponse`
-
-CheckoutRequest:
-```mermaid
-classDiagram
-    class CheckoutRequest {
-        +String ticketId
-        +Date checkoutTime
-        +String exitGateId
-    }
 ```
 
 

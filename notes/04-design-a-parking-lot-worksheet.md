@@ -78,6 +78,38 @@ Add more actors and their use cases as needed.
 ```
 ```
 
+## API design
+
+What will be some APIs that you would design for this system?
+
+Look at the use cases and try to design APIs for each of them.
+
+You can simply write the APIs in the following format:
+`API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
+
+You could also use a tool like [Swagger](https://swagger.io/) to design the APIs or follow [this](https://github.com/jamescooke/restapidocs) repository for a simple way to use Markdown to structure your API documentation.
+
+### APIs for Actor 1
+
+#### APIs Category 1
+```markdown
+* `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
+```
+
+### APIs for Actor 2
+
+#### APIs Category 1
+```markdown
+* `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
+```
+
+### APIs for Actor 3
+
+#### APIs Category 1
+```markdown
+* `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
+```
+
 ## Class diagram
 
 What will be the major classes and their attributes?
