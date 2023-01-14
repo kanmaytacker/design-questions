@@ -73,3 +73,13 @@ If you are stuck, the latter has already been implemented for you in the above s
 <summary>Solution</summary>
 <a href="https://github.com/kanmaytacker/design-questions/blob/xo-check-column-winner/src/main/java/com/scaler/lld/tictactoe/TicTactToe.java">Game Controller</a>
 </details>
+
+---
+**Assignment**
+
+Use strategy design pattern to abstract away different winning conditions like
+1. Row
+2. Column
+3. Diagonal
+
+Think about how to use them together.
