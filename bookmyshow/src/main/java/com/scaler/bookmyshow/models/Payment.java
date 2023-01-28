@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Getter
@@ -21,6 +22,9 @@ public class Payment extends BaseModel {
     private PaymentStatus status;
     private Double amount;
     private String referenceId;
+
+    @ManyToOne
+    private Ticket ticket;
 
     public Payment(Date createdAt, Date updatedAt, String referenceId, Double amount, PaymentMode mode, PaymentStatus status) {
         super(createdAt, updatedAt);

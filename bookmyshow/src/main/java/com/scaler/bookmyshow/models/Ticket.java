@@ -1,6 +1,7 @@
 package com.scaler.bookmyshow.models;
 
 import com.scaler.bookmyshow.enums.TicketStatus;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
+@Data
 @NoArgsConstructor
 @Entity
 public class Ticket extends BaseModel {
@@ -28,16 +30,13 @@ public class Ticket extends BaseModel {
     @Enumerated
     private TicketStatus status;
 
-    @OneToOne
-    private Payment payment;
 
-    public Ticket(Date createdAt, Date updatedAt, Show show, User user, List<ShowSeat> seats, Double amount, TicketStatus status, Payment payment) {
+    public Ticket(Date createdAt, Date updatedAt, Show show, User user, List<ShowSeat> seats, Double amount, TicketStatus status) {
         super(createdAt, updatedAt);
         this.show = show;
         this.user = user;
         this.seats = seats;
         this.amount = amount;
         this.status = status;
-        this.payment = payment;
     }
 }
