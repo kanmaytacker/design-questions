@@ -1,0 +1,7 @@
+package com.scaler.bms.enums;
+
+public enum MovieFeature {
+    THREE_D,
+    TWO_D,
+    DOLBY_DIGITAL
+}
