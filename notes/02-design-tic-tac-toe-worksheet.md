@@ -133,4 +133,47 @@ List down the cardinalities of the relationships between the classes.
 
 Draw the class diagram.
 ```
+ classDiagram
+    class Game {
+        -Board board
+        -HumanPlayer humanPlayer
+        -BotPlayer botPlayer
+        +register(HumanPlayer) HumanPlayer
+        +startGame(HumanPlayer, BotPlayer, int row, int column) Board
+        +makeMove(PlayerId, int, int) Board
+        +checkWinner(Board, HumanPlayer, BotPlayer) int
+    }
+
+    class Board {
+        -Cell[][] cells
+        +Board(int, int) : Board
+    }
+
+    class Cell {
+        -int x
+        -int y
+        -Symbol symbol
+    }
+
+    class HumanPlayer {
+        -int id
+        -String name
+        -String email
+        -Byte[] photo
+        -Symbol symbol
+        +play(Board) Cell
+    }
+
+    class BotPlayer {
+        -int id
+        -Level level
+        -Symbol symbol
+        +play(Board) Cell
+    }
+
+    Game "1" --* "1" Board
+    Board "1" --* "*" Cell
+
+    Game "1" --* "1" BotPlayer
+    Game "1" --* "1" HumanPlayer
 ```
