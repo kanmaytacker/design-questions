@@ -22,7 +22,8 @@ You can play the game within Google Search by just searching for “tictactoe”
 ## Requirements gathering
 
 What are some questions you would ask to gather requirements?
-```
+1 Can player be human and bot OR bot and bot OR human or human ?
+2 Does player will have option to choose opposite player like if anybody want to play with human human only.
 ```
 
 ## Requirements
