@@ -36,9 +36,17 @@ public class TicTacToe {
 
         // Start playing
         //
+
+        if(game.getStatus() == GameStatus.FINISHED) {
+            System.out.println("Game won by player: " + game.getWinner().getSymbol());
+        }
     }
 
     private static Game createGame(HumanPlayer humanPlayer) {
+        // Task 1 - To take user input for the type of bot
+
+        // Type of game: H vs H or H vs B
+        // Task 2 - Ask user for the type of game
         return Game.builder()
                 .withSize(BOARD_SIZE)
                 .withPlayer(humanPlayer)
@@ -64,6 +72,8 @@ public class TicTacToe {
     }
 
     private static HumanPlayer getUserInput() {
+
+        // Also ask the user for the type of bot
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name");

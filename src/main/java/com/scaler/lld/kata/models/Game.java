@@ -2,6 +2,8 @@ package com.scaler.lld.kata.models;
 
 import com.scaler.lld.kata.exceptions.InvalidMoveException;
 import com.scaler.lld.kata.exceptions.InvalidPlayersException;
+import com.scaler.lld.kata.strategies.winning.RowWinningStrategy;
+import com.scaler.lld.kata.strategies.winning.WinningStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -21,7 +23,8 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private GameStatus status;
     private int nextPlayerIndex = 0;
-
+    private List<WinningStrategy> winningStrategies = List.of(new RowWinningStrategy());
+    private Player winner;
     private Game() {
 
     }
@@ -48,13 +51,16 @@ public class Game {
         board.update(move);
 
         // Check for a winner
-        if (checkWinner()) {
+        if (checkWinner(move.getSymbol())) {
             status = GameStatus.FINISHED;
+            winner = getNextPlayer();
+            return;
         }
         // Check for a draw
 
         if (checkDraw()) {
             status = GameStatus.DRAWN;
+            return;
         }
 
         // Update the next player
@@ -81,11 +87,20 @@ public class Game {
         return move;
     }
 
-    private boolean checkWinner() {
+    private boolean checkWinner(GameSymbol symbol) {
+        for (WinningStrategy strategy : winningStrategies) {
+            boolean hasWinner = strategy.checkWinner(getBoard(), symbol);
+            if (hasWinner) {
+                return true;
+            }
+        }
         return false;
     }
 
+
     private boolean checkDraw() {
+        // Task 4 - Implement the check draw method
+        // If no cell is empty and there is no winner
         return false;
     }
 

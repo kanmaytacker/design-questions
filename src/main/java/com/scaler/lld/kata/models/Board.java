@@ -53,4 +53,16 @@ public class Board {
             System.out.printf("\n");
         }
     }
+
+    public List<BoardCell> getEmptyCells() {
+        // Iterate over the cells
+        // Flatten the array 2D => 1D
+        // Filter out cells where symbol != null
+
+        // Get a list of streams and combine it into one
+        return cells.stream()
+                .flatMap(List::stream)
+                .filter(cell -> cell.getSymbol() == null)
+                .toList();
+    }
 }
