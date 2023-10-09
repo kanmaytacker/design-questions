@@ -32,6 +32,14 @@ public class Game {
 
     public void start() {
         // Assign a random value to the nextPlayerIndex
+        // Random value -> 0 or 1
+        // 0.5 * 2 = 1.0 = 1
+        // 0.1 * 2 = 0.2 = 0
+        // 0.8 * 2 = 1.6 = 1
+        nextPlayerIndex = (int) (Math.random() * players.size());
+
+        // Set the status to IN_PROGRESS
+        status = GameStatus.IN_PROGRESS;
     }
 
     public void makeMove() {
@@ -79,6 +87,10 @@ public class Game {
 
     private boolean checkDraw() {
         return false;
+    }
+
+    public Player getNextPlayer() {
+        return players.get(nextPlayerIndex);
     }
 
     public static class Builder {
