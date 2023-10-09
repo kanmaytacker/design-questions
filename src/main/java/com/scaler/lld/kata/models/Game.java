@@ -21,6 +21,7 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private GameStatus status;
     private int nextPlayerIndex = 0;
+    private Player winner = null;
 
     private Game() {
 
@@ -31,22 +32,25 @@ public class Game {
     }
 
     public void start() {
-        // Assign a random value to the nextPlayerIndex
+        nextPlayerIndex = (int) (Math.random() * players.size());
+        status = GameStatus.IN_PROGRESS;
     }
 
     public void makeMove() {
 
         BoardCell move = getNextMove();
         board.update(move);
-
         // Check for a winner
-        if (checkWinner()) {
+        if (checkWinner(move.getSymbol())) {
             status = GameStatus.FINISHED;
+            winner = getNextPlayer();
+            return;
         }
         // Check for a draw
 
         if (checkDraw()) {
             status = GameStatus.DRAWN;
+            return;
         }
 
         // Update the next player
@@ -65,7 +69,7 @@ public class Game {
 
     private BoardCell getNextMove() {
 
-        Player player = players.get(nextPlayerIndex);
+        Player player = getNextPlayer();
 
         BoardCell move = player.makeMove(board);
         validateMove(move);
@@ -73,7 +77,24 @@ public class Game {
         return move;
     }
 
-    private boolean checkWinner() {
+    public Player getNextPlayer() {
+        return players.get(nextPlayerIndex);
+    }
+
+    private boolean checkWinner(GameSymbol gameSymbol) {
+        List<List<BoardCell>> cells = board.getCells();
+        for (List<BoardCell> row : cells) {
+            boolean isWinner = true;
+            for (BoardCell cell : row) {
+                if (cell.getSymbol() != gameSymbol) {
+                    isWinner = false;
+                    break;
+                }
+            }
+            if (isWinner) {
+                return true;
+            }
+        }
         return false;
     }
 

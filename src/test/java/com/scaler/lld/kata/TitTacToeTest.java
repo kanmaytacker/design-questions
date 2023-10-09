@@ -17,7 +17,7 @@ public class TitTacToeTest {
                 .withSize(BOARD_SIZE)
                 .withPlayer(
                         HumanPlayer.builder()
-                                .symbol(GameSymbol.O).user(new User())
+                                .symbol(GameSymbol.O).user(null)
                                 .build()
                 )
                 .withPlayer(
