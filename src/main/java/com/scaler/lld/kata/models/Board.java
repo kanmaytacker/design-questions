@@ -61,7 +61,7 @@ public class Board {
 
         // Get a list of streams and combine it into one
         return cells.stream()
-                .flatMap(List::stream)
+                .flatMap(List::stream) // Gets the stream for each array and then combines it
                 .filter(cell -> cell.getSymbol() == null)
                 .toList();
     }

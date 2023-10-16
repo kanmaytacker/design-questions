@@ -10,6 +10,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -154,6 +155,20 @@ public class Game {
             return symbols.size() == PLAYER_COUNT;
         }
 
+
+    }
+
+    public void undo() {
+
+        // Validate if status = progress
+
+        // Sequence of moves -> Stack of moves
+        Stack<BoardCell> moves;
+
+        // Remove this from the stack
+        // Set the player to null on the board
+
+        // Update the next player index
 
     }
 
