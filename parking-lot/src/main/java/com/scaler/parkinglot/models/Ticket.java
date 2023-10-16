@@ -8,7 +8,9 @@ import java.util.Date;
 @SuperBuilder
 public class Ticket extends BaseModel {
 
-    private Long vehicleId;
+    private Vehicle vehicle;
+
     private Date entryTime;
     private Long spotId;
+    private Long entryGateId;
 }

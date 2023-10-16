@@ -35,14 +35,15 @@ public class CreateParkingLotRequest {
                         .build());
         parkingFloors.forEach(parkingFloor -> parkingFloor.setId(ParkingFloorId.nextId()));
 
+        System.out.println(parkingFloors.stream().map(floor -> floor.getSpots().size()));
         return ParkingLot
                 .builder()
                 .id(ParkingLotId.nextId())
                 .name(name)
                 .address(address)
                 .floors(parkingFloors)
-                .entryGates(Collections.nCopies(numberOfFloors, EntryGate.builder().build()))
-                .exitGates(Collections.nCopies(numberOfFloors, ExitGate.builder().build()))
+                .entryGates(Collections.nCopies(numberOfEntryGates, EntryGate.builder().build()))
+                .exitGates(Collections.nCopies(numberOfExitGates, ExitGate.builder().build()))
                 .build();
 
     }

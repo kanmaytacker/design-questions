@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 public class ParkingSpot extends BaseModel {
 
-    private Long spotId;
     private Long floorId;
     private VehicleType vehicleType;
     private SpotStatus spotStatus;
