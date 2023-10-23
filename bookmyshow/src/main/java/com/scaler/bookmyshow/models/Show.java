@@ -18,5 +18,5 @@ public class Show extends BaseModel {
     private Integer duration;
     private List<ShowSeat> showSeats = new ArrayList<>();
 
-    private Hall hall;
+    private Screen screen;
 }

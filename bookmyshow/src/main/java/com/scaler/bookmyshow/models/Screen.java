@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class Hall extends BaseModel {
+public class Screen extends BaseModel {
 
     private String name;
 
