@@ -5,6 +5,7 @@ import com.scaler.bookmyshow.enums.MovieFeature;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,4 +27,11 @@ public class Movie extends BaseModel {
     @Enumerated
     private List<MovieFeature> features = new ArrayList<>();
 
+    @OneToMany(mappedBy = "movie")
+    private List<Show> shows = new ArrayList<>();
 }
+
+// Parent entity - The place where the reference is stored
+// Movie - Show -> Show -> movie_id
+// - mappedBy -
+// - @JoinColumn -
