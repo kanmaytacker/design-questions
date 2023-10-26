@@ -1,6 +1,8 @@
 package com.scaler.bookmyshow.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +15,10 @@ import java.util.List;
 @Entity
 public class Theatre extends BaseModel {
 
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
     private String name;
     private String address;
 
@@ -22,3 +28,5 @@ public class Theatre extends BaseModel {
     @OneToMany
     private List<Show> shows = new ArrayList<>();
 }
+
+// 1. Which is the parent entity
