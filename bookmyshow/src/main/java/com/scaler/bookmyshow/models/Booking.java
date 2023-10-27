@@ -13,11 +13,11 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class Booking extends BaseModel {
 
     @ManyToOne
-    private User user;
+    private Customer customer;
     @ManyToOne
     private Show show;
     @ManyToMany

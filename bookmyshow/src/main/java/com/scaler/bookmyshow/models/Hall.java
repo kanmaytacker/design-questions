@@ -20,7 +20,7 @@ public class Hall extends BaseModel {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "hall")
     private List<Seat> seats = new ArrayList<>();
 
     @ElementCollection

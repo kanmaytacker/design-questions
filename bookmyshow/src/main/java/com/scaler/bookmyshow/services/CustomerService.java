@@ -46,6 +46,10 @@ public class CustomerService {
 
         return customerRepository.save(customer);
     }
+
+    public Customer getCustomerInternal(Long userId) {
+        return customerRepository.findById(userId).orElse(null);
+    }
 }
 
 // BREAK 6:02 - 6:10

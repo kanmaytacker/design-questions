@@ -24,4 +24,7 @@ public class Show extends BaseModel {
 
     @ManyToOne
     private Hall hall;
+
+    @OneToMany(mappedBy = "show")
+    private List<ShowSeat> showSeats = new ArrayList<>();
 }
