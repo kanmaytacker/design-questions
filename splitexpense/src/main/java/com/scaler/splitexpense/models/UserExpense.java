@@ -1,12 +1,14 @@
 package com.scaler.splitexpense.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserExpense extends BaseModel {
 
     @ManyToOne

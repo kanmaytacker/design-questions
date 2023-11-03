@@ -1,5 +1,6 @@
 package com.scaler.splitexpense;
 
+import com.scaler.splitexpense.commands.Command;
 import com.scaler.splitexpense.commands.CommandExecutor;
 import com.scaler.splitexpense.commands.CreateUserCommand;
 import org.springframework.boot.CommandLineRunner;
@@ -7,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -15,10 +17,10 @@ public class SplitexpenseApplication implements CommandLineRunner {
     private CommandExecutor commandExecutor;
     private Scanner scanner;
 
-    public SplitexpenseApplication(CommandExecutor commandExecutor, CreateUserCommand command) {
+    public SplitexpenseApplication(CommandExecutor commandExecutor, List<Command> command) {
         this.scanner = new Scanner(System.in);
         this.commandExecutor = commandExecutor;
-        this.commandExecutor.addCommand(command);
+        this.commandExecutor.addCommands(command);
     }
 
 

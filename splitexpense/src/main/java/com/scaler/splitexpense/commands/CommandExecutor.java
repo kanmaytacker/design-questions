@@ -9,8 +9,8 @@ import java.util.List;
 public class CommandExecutor {
     private List<Command> commands = new ArrayList<>();
 
-    public void addCommand(Command command) {
-        commands.add(command);
+    public void addCommands(List<Command> command) {
+        commands.addAll(command);
     }
 
     public void removeCommand(Command command) {
