@@ -15,11 +15,6 @@ public class Expense extends BaseModel {
     private String description;
     private Double amount;
 
-    private Date createdOn;
-
-    @ManyToOne
-    private Group group;
-
     @ManyToMany
     private List<User> users = new ArrayList<>();
 
@@ -30,4 +25,7 @@ public class Expense extends BaseModel {
     @OneToMany(mappedBy = "expense")
     @Where(clause = "type = 'OWED'")
     private List<UserExpense> owedBy = new ArrayList<>();
+
+    @Enumerated
+    private ExpenseStatus status;
 }
